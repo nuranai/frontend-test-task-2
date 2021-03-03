@@ -1,0 +1,35 @@
+fieldset {
+    width: 300px;
+}
+
+.changeable {
+    width: 250px;
+    padding: 10px;
+    border: solid 2px grey;
+    border-radius: 10px;
+    margin-left: 350px;
+}
+
+.wrapper {
+    display: flex;
+}
+
+.slider {
+    width: 1000px;
+    /* float: left;
+    clear: left; */
+    margin-top: 15px;
+}
+
+.slider .ui-slider-range { background: black; }
+.slider .ui-slider-handle { border-color: black; }
+
+.color__example {
+    width: 50px;
+    height: 15px;
+    border: solid 1px black;
+    border-radius: 5px;
+    margin-top: 15px;
+    margin-right: 20px;
+    background-color: black;
+}

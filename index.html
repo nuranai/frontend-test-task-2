@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Jqury slider</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="./index.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            // функция изменения цвета (внутри слайдера и блока) что бы видеть какой цвет получится
+            function changeColor() {
+                // преобразование из 10-ой системы в 16-ую
+                let value = $(".slider").slider("value").toString(16);
+                // кчли есть недостаюшие символы дополним нулями
+                while(value.length < 6) value = "0" + value;
+                // изменяем цвет слайдера и блока экземпляра
+                $(".slider .ui-slider-range, .color__example").css("background-color", "#" + value);
+                // присваиваем перменной значение
+                colorValue = value;
+            }
+
+            $(".slider").slider({
+                orientation: "horizontal",
+                range: "min",
+                max: parseInt("FFFFFF", 16),
+                value: 0,
+                slide: changeColor,
+                change: changeColor
+            });
+
+            // переменная отвечающая за хранение текущего цвета
+            let colorValue = "000000";
+            // функция по клику на кнопки меняет цвет текста/заднего фона
+            $("button").button().on("click", function() {
+                console.log(colorValue);
+                $(".changeable").css($(this).hasClass("font__color")
+                    ? "color"
+                    : "background-color"
+                    , "#" + colorValue);
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <fieldset>
+        <legend>Select:</legend>
+        <button class="font__color">Font-color</button>
+        <button class="background__color">Background-color</button>
+    </fieldset>
+    <div class="wrapper">
+        <div class="color__example"></div>
+        <div class="slider"></div>
+    </div>
+    <div class="changeable">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis, nisi qui quaerat
+        quasi voluptas ullam</div>
+</body>
+
+</html>
